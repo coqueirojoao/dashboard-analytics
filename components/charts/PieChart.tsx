@@ -32,10 +32,12 @@ export function PieChart({ data, height = 350 }: PieChartProps) {
           cx="50%"
           cy="50%"
           labelLine={false}
-          label={(props: { name: string; percent: number }) => {
-            const { name, percent } = props;
-            return `${name}: ${(percent * 100).toFixed(0)}%`;
-          }}
+          label={
+            ((props: { name?: string; percent?: number }) => {
+              if (!props.name || props.percent === undefined) return "";
+              return `${props.name}: ${(props.percent * 100).toFixed(0)}%`;
+            }) as any
+          }
           outerRadius={100}
           fill="#8884d8"
           dataKey="value"
