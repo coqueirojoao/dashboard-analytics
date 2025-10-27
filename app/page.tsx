@@ -5,6 +5,7 @@ import { Users, TrendingUp, ShoppingCart, DollarSign, RefreshCw } from "lucide-r
 import { MetricCard, ChartCard } from "@/components/dashboard";
 import { MetricCardSkeleton } from "@/components/dashboard/MetricCardSkeleton";
 import { ChartCardSkeleton } from "@/components/dashboard/ChartCardSkeleton";
+import { Footer } from "@/components/layout/Footer";
 import { LineChart, BarChart, AreaChart, PieChart } from "@/components/charts";
 import { ChartData, DashboardMetrics } from "@/types";
 import {
@@ -201,6 +202,8 @@ export default function Home() {
           </ChartCard>
         </div>
       </div>
+
+      <Footer />
     </div>
   );
 }
