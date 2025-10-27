@@ -1,0 +1,92 @@
+{
+  "dashboard": {
+    "title": "Dashboard Analytics",
+    "subtitle": "Bem-vindo! Aqui está o que está acontecendo com seu negócio hoje.",
+    "refresh": "Atualizar",
+    "refreshing": "Atualizando...",
+    "about": "Sobre",
+    "aboutTitle": "Saiba mais sobre este projeto",
+    "refreshTitle": "Atualizar dados do dashboard",
+    "error": "Falha ao carregar dados do dashboard. Por favor, tente novamente mais tarde.",
+    "retry": "Tentar Novamente"
+  },
+  "metrics": {
+    "totalUsers": "Total de Usuários",
+    "totalRevenue": "Receita Total",
+    "conversionRate": "Taxa de Conversão",
+    "avgOrderValue": "Valor Médio do Pedido"
+  },
+  "charts": {
+    "revenueOverview": {
+      "title": "Visão Geral da Receita",
+      "description": "Comparação de receita mensal"
+    },
+    "trafficSources": {
+      "title": "Fontes de Tráfego",
+      "description": "Tráfego semanal por fonte"
+    },
+    "salesByCategory": {
+      "title": "Vendas por Categoria",
+      "description": "Distribuição de vendas entre categorias"
+    },
+    "userGrowth": {
+      "title": "Crescimento de Usuários",
+      "description": "Novos registros de usuários ao longo do tempo"
+    }
+  },
+  "footer": {
+    "projectInfo": "Informações do Projeto",
+    "projectDescription": "Dashboard de análise full-stack demonstrando visualização de dados moderna, integração com API REST e arquitetura limpa.",
+    "techStack": "Stack Tecnológica",
+    "socialLinks": "Links Sociais",
+    "github": "GitHub",
+    "linkedin": "LinkedIn",
+    "email": "E-mail",
+    "sourceCode": "Código Fonte",
+    "viewSource": "Ver no GitHub",
+    "builtWith": "Construído com",
+    "madeBy": "Desenvolvido por"
+  },
+  "about": {
+    "backToDashboard": "Voltar ao Dashboard",
+    "title": "Sobre Este Projeto",
+    "subtitle": "Um dashboard de análise full-stack demonstrando práticas modernas de desenvolvimento web, visualização de dados interativa e integração em nuvem.",
+    "projectOverview": {
+      "title": "Visão Geral do Projeto",
+      "paragraph1": "Este dashboard foi construído para demonstrar proficiência em desenvolvimento full-stack moderno. Ele mostra a capacidade de criar aplicações complexas orientadas a dados com atenção à experiência do usuário, desempenho e qualidade de código.",
+      "paragraph2": "A aplicação possui visualização de dados em tempo real, design responsivo, suporte a modo escuro e uma infraestrutura backend completa usando MongoDB Atlas para hospedagem de banco de dados em nuvem.",
+      "paragraph3": "Todo o código segue as melhores práticas da indústria, incluindo commits convencionais, formatação de código com Prettier, linting com ESLint e hooks de pré-commit para garantir qualidade consistente do código."
+    },
+    "keyFeatures": {
+      "title": "Principais Recursos",
+      "dataVisualization": {
+        "title": "Visualização de Dados Interativa",
+        "description": "Construído com Recharts para exibir tendências de receita, fontes de tráfego, distribuição de vendas e crescimento de usuários com gráficos responsivos e animados."
+      },
+      "mongodbIntegration": {
+        "title": "Integração com MongoDB Atlas",
+        "description": "Banco de dados hospedado em nuvem com Mongoose ODM para modelagem de dados flexível. Endpoints de API REST lidam com todas as operações CRUD de forma eficiente."
+      },
+      "modernStack": {
+        "title": "Stack Tecnológica Moderna",
+        "description": "Next.js 16 com App Router e Turbopack para desenvolvimento ultra-rápido. TypeScript garante segurança de tipo em toda a aplicação."
+      },
+      "devPractices": {
+        "title": "Práticas de Desenvolvimento Profissional",
+        "description": "ESLint, Prettier, Husky e Commitlint garantem a qualidade do código. Commits convencionais e fluxo de trabalho git adequado ao longo do projeto."
+      }
+    },
+    "techStack": {
+      "title": "Stack Tecnológica",
+      "frontend": "Frontend",
+      "backend": "Backend",
+      "devTools": "Ferramentas de Dev",
+      "deployment": "Deploy"
+    },
+    "links": {
+      "viewSource": "Ver Código Fonte",
+      "viewLive": "Ver Dashboard ao Vivo"
+    },
+    "builtBy": "Desenvolvido por"
+  }
+}

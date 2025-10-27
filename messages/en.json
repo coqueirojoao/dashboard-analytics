@@ -1,0 +1,92 @@
+{
+  "dashboard": {
+    "title": "Analytics Dashboard",
+    "subtitle": "Welcome back! Here's what's happening with your business today.",
+    "refresh": "Refresh",
+    "refreshing": "Refreshing...",
+    "about": "About",
+    "aboutTitle": "Learn more about this project",
+    "refreshTitle": "Refresh dashboard data",
+    "error": "Failed to load dashboard data. Please try again later.",
+    "retry": "Retry"
+  },
+  "metrics": {
+    "totalUsers": "Total Users",
+    "totalRevenue": "Total Revenue",
+    "conversionRate": "Conversion Rate",
+    "avgOrderValue": "Avg. Order Value"
+  },
+  "charts": {
+    "revenueOverview": {
+      "title": "Revenue Overview",
+      "description": "Monthly revenue comparison"
+    },
+    "trafficSources": {
+      "title": "Traffic Sources",
+      "description": "Weekly traffic by source"
+    },
+    "salesByCategory": {
+      "title": "Sales by Category",
+      "description": "Distribution of sales across categories"
+    },
+    "userGrowth": {
+      "title": "User Growth",
+      "description": "New user registrations over time"
+    }
+  },
+  "footer": {
+    "projectInfo": "Project Information",
+    "projectDescription": "Full-stack analytics dashboard showcasing modern data visualization, REST API integration, and clean architecture.",
+    "techStack": "Tech Stack",
+    "socialLinks": "Social Links",
+    "github": "GitHub",
+    "linkedin": "LinkedIn",
+    "email": "Email",
+    "sourceCode": "Source Code",
+    "viewSource": "View on GitHub",
+    "builtWith": "Built with",
+    "madeBy": "Made by"
+  },
+  "about": {
+    "backToDashboard": "Back to Dashboard",
+    "title": "About This Project",
+    "subtitle": "A full-stack analytics dashboard showcasing modern web development practices, interactive data visualization, and cloud integration.",
+    "projectOverview": {
+      "title": "Project Overview",
+      "paragraph1": "This dashboard was built to demonstrate proficiency in modern full-stack development. It showcases the ability to create complex, data-driven applications with attention to user experience, performance, and code quality.",
+      "paragraph2": "The application features real-time data visualization, responsive design, dark mode support, and a complete backend infrastructure using MongoDB Atlas for cloud database hosting.",
+      "paragraph3": "All code follows industry best practices including conventional commits, code formatting with Prettier, linting with ESLint, and pre-commit hooks to ensure consistent code quality."
+    },
+    "keyFeatures": {
+      "title": "Key Features",
+      "dataVisualization": {
+        "title": "Interactive Data Visualization",
+        "description": "Built with Recharts to display revenue trends, traffic sources, sales distribution, and user growth with responsive, animated charts."
+      },
+      "mongodbIntegration": {
+        "title": "MongoDB Atlas Integration",
+        "description": "Cloud-hosted database with Mongoose ODM for flexible data modeling. REST API endpoints handle all CRUD operations efficiently."
+      },
+      "modernStack": {
+        "title": "Modern Tech Stack",
+        "description": "Next.js 16 with App Router and Turbopack for lightning-fast development. TypeScript ensures type safety across the entire application."
+      },
+      "devPractices": {
+        "title": "Professional Development Practices",
+        "description": "ESLint, Prettier, Husky, and Commitlint ensure code quality. Conventional commits and proper git workflow throughout."
+      }
+    },
+    "techStack": {
+      "title": "Technology Stack",
+      "frontend": "Frontend",
+      "backend": "Backend",
+      "devTools": "Dev Tools",
+      "deployment": "Deployment"
+    },
+    "links": {
+      "viewSource": "View Source Code",
+      "viewLive": "View Live Dashboard"
+    },
+    "builtBy": "Built by"
+  }
+}

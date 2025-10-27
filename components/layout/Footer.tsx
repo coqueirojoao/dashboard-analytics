@@ -1,6 +1,10 @@
+"use client";
+
+import { useTranslations } from "next-intl";
 import { Github, Linkedin, Mail, Code2 } from "lucide-react";
 
 export function Footer() {
+  const t = useTranslations("footer");
   const currentYear = new Date().getFullYear();
 
   return (
@@ -10,21 +14,22 @@ export function Footer() {
           {/* Project Info */}
           <div>
             <h3 className="text-lg font-semibold text-gray-900 dark:text-white mb-3">
-              Analytics Dashboard
+              {t("projectInfo")}
             </h3>
             <p className="text-sm text-gray-600 dark:text-gray-400 mb-4">
-              A modern, full-stack analytics dashboard built with Next.js 16, TypeScript, MongoDB
-              Atlas, and Recharts.
+              {t("projectDescription")}
             </p>
             <div className="flex items-center gap-2 text-sm text-gray-600 dark:text-gray-400">
               <Code2 className="w-4 h-4" />
-              <span>Built with modern web technologies</span>
+              <span>{t("builtWith")}</span>
             </div>
           </div>
 
           {/* Tech Stack */}
           <div>
-            <h3 className="text-lg font-semibold text-gray-900 dark:text-white mb-3">Tech Stack</h3>
+            <h3 className="text-lg font-semibold text-gray-900 dark:text-white mb-3">
+              {t("techStack")}
+            </h3>
             <ul className="space-y-2 text-sm text-gray-600 dark:text-gray-400">
               <li>• Next.js 16 with App Router</li>
               <li>• TypeScript & Tailwind CSS</li>
@@ -36,7 +41,9 @@ export function Footer() {
 
           {/* Links */}
           <div>
-            <h3 className="text-lg font-semibold text-gray-900 dark:text-white mb-3">Connect</h3>
+            <h3 className="text-lg font-semibold text-gray-900 dark:text-white mb-3">
+              {t("socialLinks")}
+            </h3>
             <div className="space-y-3">
               <a
                 href="https://github.com/coqueirojoao"
@@ -45,7 +52,7 @@ export function Footer() {
                 className="flex items-center gap-2 text-sm text-gray-600 dark:text-gray-400 hover:text-blue-600 dark:hover:text-blue-400 transition-colors"
               >
                 <Github className="w-4 h-4" />
-                <span>GitHub</span>
+                <span>{t("github")}</span>
               </a>
               <a
                 href="https://linkedin.com/in/joao-pedro-coqueiro"
@@ -54,14 +61,14 @@ export function Footer() {
                 className="flex items-center gap-2 text-sm text-gray-600 dark:text-gray-400 hover:text-blue-600 dark:hover:text-blue-400 transition-colors"
               >
                 <Linkedin className="w-4 h-4" />
-                <span>LinkedIn</span>
+                <span>{t("linkedin")}</span>
               </a>
               <a
-                href="mailto:joaopedro@example.com"
+                href="mailto:azevedo.joao1995@gmail.com"
                 className="flex items-center gap-2 text-sm text-gray-600 dark:text-gray-400 hover:text-blue-600 dark:hover:text-blue-400 transition-colors"
               >
                 <Mail className="w-4 h-4" />
-                <span>Email</span>
+                <span>{t("email")}</span>
               </a>
             </div>
           </div>
@@ -80,12 +87,10 @@ export function Footer() {
                 rel="noopener noreferrer"
                 className="text-gray-600 dark:text-gray-400 hover:text-blue-600 dark:hover:text-blue-400 transition-colors"
               >
-                View Source Code
+                {t("viewSource")}
               </a>
               <span className="text-gray-400 dark:text-gray-600">•</span>
-              <span className="text-gray-600 dark:text-gray-400">
-                Made with ❤️ for my portfolio
-              </span>
+              <span className="text-gray-600 dark:text-gray-400">{t("madeBy")}</span>
             </div>
           </div>
         </div>

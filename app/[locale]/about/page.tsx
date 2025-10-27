@@ -2,44 +2,50 @@
 
 import Link from "next/link";
 import { motion } from "framer-motion";
+import { useTranslations, useLocale } from "next-intl";
 import { ArrowLeft, Code2, Database, BarChart3, Zap, Github, ExternalLink } from "lucide-react";
 
 export default function AboutPage() {
+  const t = useTranslations("about");
+  const locale = useLocale();
+
   const features = [
     {
       icon: <BarChart3 className="w-6 h-6" />,
-      title: "Interactive Data Visualization",
-      description:
-        "Built with Recharts to display revenue trends, traffic sources, sales distribution, and user growth with responsive, animated charts.",
+      titleKey: "keyFeatures.dataVisualization.title",
+      descriptionKey: "keyFeatures.dataVisualization.description",
     },
     {
       icon: <Database className="w-6 h-6" />,
-      title: "MongoDB Atlas Integration",
-      description:
-        "Cloud-hosted database with Mongoose ODM for flexible data modeling. REST API endpoints handle all CRUD operations efficiently.",
+      titleKey: "keyFeatures.mongodbIntegration.title",
+      descriptionKey: "keyFeatures.mongodbIntegration.description",
     },
     {
       icon: <Zap className="w-6 h-6" />,
-      title: "Modern Tech Stack",
-      description:
-        "Next.js 16 with App Router and Turbopack for lightning-fast development. TypeScript ensures type safety across the entire application.",
+      titleKey: "keyFeatures.modernStack.title",
+      descriptionKey: "keyFeatures.modernStack.description",
     },
     {
       icon: <Code2 className="w-6 h-6" />,
-      title: "Professional Development Practices",
-      description:
-        "ESLint, Prettier, Husky, and Commitlint ensure code quality. Conventional commits and proper git workflow throughout.",
+      titleKey: "keyFeatures.devPractices.title",
+      descriptionKey: "keyFeatures.devPractices.description",
     },
   ];
 
   const techStack = [
     {
-      category: "Frontend",
+      categoryKey: "techStack.frontend",
       items: ["Next.js 16", "TypeScript", "Tailwind CSS", "Recharts", "Framer Motion"],
     },
-    { category: "Backend", items: ["Next.js API Routes", "MongoDB Atlas", "Mongoose"] },
-    { category: "Dev Tools", items: ["ESLint", "Prettier", "Husky", "Commitlint", "tsx"] },
-    { category: "Deployment", items: ["Vercel", "GitHub"] },
+    {
+      categoryKey: "techStack.backend",
+      items: ["Next.js API Routes", "MongoDB Atlas", "Mongoose"],
+    },
+    {
+      categoryKey: "techStack.devTools",
+      items: ["ESLint", "Prettier", "Husky", "Commitlint", "tsx"],
+    },
+    { categoryKey: "techStack.deployment", items: ["Vercel", "GitHub"] },
   ];
 
   return (
@@ -52,11 +58,11 @@ export default function AboutPage() {
           transition={{ duration: 0.3 }}
         >
           <Link
-            href="/"
+            href={`/${locale}`}
             className="inline-flex items-center gap-2 text-gray-600 dark:text-gray-300 hover:text-gray-900 dark:hover:text-white transition-colors mb-8"
           >
             <ArrowLeft className="w-5 h-5" />
-            Back to Dashboard
+            {t("backToDashboard")}
           </Link>
         </motion.div>
 
@@ -68,11 +74,10 @@ export default function AboutPage() {
           className="text-center mb-16"
         >
           <h1 className="text-4xl sm:text-5xl font-bold text-gray-900 dark:text-white mb-4">
-            About This Project
+            {t("title")}
           </h1>
           <p className="text-lg text-gray-600 dark:text-gray-300 max-w-3xl mx-auto">
-            A full-stack analytics dashboard showcasing modern web development practices,
-            interactive data visualization, and cloud integration.
+            {t("subtitle")}
           </p>
         </motion.div>
 
@@ -84,24 +89,12 @@ export default function AboutPage() {
           className="bg-white dark:bg-gray-800 rounded-xl shadow-lg p-8 mb-12"
         >
           <h2 className="text-2xl font-bold text-gray-900 dark:text-white mb-4">
-            Project Overview
+            {t("projectOverview.title")}
           </h2>
           <div className="space-y-4 text-gray-600 dark:text-gray-300">
-            <p>
-              This dashboard was built to demonstrate proficiency in modern full-stack development.
-              It showcases the ability to create complex, data-driven applications with attention to
-              user experience, performance, and code quality.
-            </p>
-            <p>
-              The application features real-time data visualization, responsive design, dark mode
-              support, and a complete backend infrastructure using MongoDB Atlas for cloud database
-              hosting.
-            </p>
-            <p>
-              All code follows industry best practices including conventional commits, code
-              formatting with Prettier, linting with ESLint, and pre-commit hooks to ensure
-              consistent code quality.
-            </p>
+            <p>{t("projectOverview.paragraph1")}</p>
+            <p>{t("projectOverview.paragraph2")}</p>
+            <p>{t("projectOverview.paragraph3")}</p>
           </div>
         </motion.div>
 
@@ -113,7 +106,7 @@ export default function AboutPage() {
           className="mb-12"
         >
           <h2 className="text-2xl font-bold text-gray-900 dark:text-white mb-8 text-center">
-            Key Features
+            {t("keyFeatures.title")}
           </h2>
           <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
             {features.map((feature, index) => (
@@ -130,9 +123,9 @@ export default function AboutPage() {
                   </div>
                   <div>
                     <h3 className="text-lg font-semibold text-gray-900 dark:text-white mb-2">
-                      {feature.title}
+                      {t(feature.titleKey)}
                     </h3>
-                    <p className="text-gray-600 dark:text-gray-300">{feature.description}</p>
+                    <p className="text-gray-600 dark:text-gray-300">{t(feature.descriptionKey)}</p>
                   </div>
                 </div>
               </motion.div>
@@ -148,13 +141,13 @@ export default function AboutPage() {
           className="bg-white dark:bg-gray-800 rounded-xl shadow-lg p-8 mb-12"
         >
           <h2 className="text-2xl font-bold text-gray-900 dark:text-white mb-8 text-center">
-            Technology Stack
+            {t("techStack.title")}
           </h2>
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
             {techStack.map((stack, index) => (
               <div key={index}>
                 <h3 className="text-lg font-semibold text-gray-900 dark:text-white mb-3">
-                  {stack.category}
+                  {t(stack.categoryKey)}
                 </h3>
                 <ul className="space-y-2">
                   {stack.items.map((item, itemIndex) => (
@@ -186,14 +179,14 @@ export default function AboutPage() {
             className="inline-flex items-center gap-2 px-6 py-3 bg-gray-900 dark:bg-gray-700 text-white rounded-lg hover:bg-gray-800 dark:hover:bg-gray-600 transition-colors"
           >
             <Github className="w-5 h-5" />
-            View Source Code
+            {t("links.viewSource")}
           </a>
           <Link
-            href="/"
+            href={`/${locale}`}
             className="inline-flex items-center gap-2 px-6 py-3 bg-blue-600 text-white rounded-lg hover:bg-blue-700 transition-colors"
           >
             <ExternalLink className="w-5 h-5" />
-            View Live Dashboard
+            {t("links.viewLive")}
           </Link>
         </motion.div>
 
@@ -205,7 +198,7 @@ export default function AboutPage() {
           className="mt-16 text-center text-gray-600 dark:text-gray-400"
         >
           <p>
-            Built by{" "}
+            {t("builtBy")}{" "}
             <a
               href="https://github.com/coqueirojoao"
               target="_blank"

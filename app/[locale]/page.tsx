@@ -2,11 +2,13 @@
 
 import { useEffect, useState, useCallback } from "react";
 import Link from "next/link";
+import { useTranslations, useLocale } from "next-intl";
 import { Users, TrendingUp, ShoppingCart, DollarSign, RefreshCw, Info } from "lucide-react";
 import { MetricCard, ChartCard } from "@/components/dashboard";
 import { MetricCardSkeleton } from "@/components/dashboard/MetricCardSkeleton";
 import { ChartCardSkeleton } from "@/components/dashboard/ChartCardSkeleton";
 import { Footer } from "@/components/layout/Footer";
+import { LanguageToggle } from "@/components/layout/LanguageToggle";
 import { LineChart, BarChart, AreaChart, PieChart } from "@/components/charts";
 import { ChartData, DashboardMetrics } from "@/types";
 import {
@@ -18,6 +20,8 @@ import {
 } from "@/lib/api/dashboard";
 
 export default function Home() {
+  const t = useTranslations();
+  const locale = useLocale();
   const [metrics, setMetrics] = useState<DashboardMetrics | null>(null);
   const [revenueData, setRevenueData] = useState<ChartData | null>(null);
   const [trafficData, setTrafficData] = useState<ChartData | null>(null);
@@ -47,12 +51,12 @@ export default function Home() {
       setUserGrowthData(userGrowth);
     } catch (err) {
       console.error("Error loading dashboard data:", err);
-      setError("Failed to load dashboard data. Please try again later.");
+      setError(t("dashboard.error"));
     } finally {
       setLoading(false);
       setRefreshing(false);
     }
-  }, []);
+  }, [t]);
 
   const handleRefresh = async () => {
     setRefreshing(true);
@@ -70,11 +74,9 @@ export default function Home() {
           {/* Header */}
           <div className="mb-8">
             <h1 className="text-3xl font-bold text-gray-900 dark:text-white mb-2">
-              Analytics Dashboard
+              {t("dashboard.title")}
             </h1>
-            <p className="text-gray-600 dark:text-gray-400">
-              Welcome back! Here&apos;s what&apos;s happening with your business today.
-            </p>
+            <p className="text-gray-600 dark:text-gray-400">{t("dashboard.subtitle")}</p>
           </div>
 
           {/* Metrics Grid Skeleton */}
@@ -109,7 +111,7 @@ export default function Home() {
             onClick={() => window.location.reload()}
             className="px-4 py-2 bg-blue-600 text-white rounded-lg hover:bg-blue-700 transition-colors"
           >
-            Retry
+            {t("dashboard.retry")}
           </button>
         </div>
       </div>
@@ -127,29 +129,28 @@ export default function Home() {
         <div className="mb-8 flex flex-col sm:flex-row items-start sm:items-center justify-between gap-4">
           <div>
             <h1 className="text-3xl font-bold text-gray-900 dark:text-white mb-2">
-              Analytics Dashboard
+              {t("dashboard.title")}
             </h1>
-            <p className="text-gray-600 dark:text-gray-400">
-              Welcome back! Here&apos;s what&apos;s happening with your business today.
-            </p>
+            <p className="text-gray-600 dark:text-gray-400">{t("dashboard.subtitle")}</p>
           </div>
           <div className="flex items-center gap-3">
+            <LanguageToggle />
             <Link
-              href="/about"
+              href={`/${locale}/about`}
               className="flex items-center gap-2 px-4 py-2 bg-gray-200 dark:bg-gray-700 text-gray-900 dark:text-white rounded-lg hover:bg-gray-300 dark:hover:bg-gray-600 transition-colors"
-              title="Learn more about this project"
+              title={t("dashboard.aboutTitle")}
             >
               <Info className="w-4 h-4" />
-              About
+              {t("dashboard.about")}
             </Link>
             <button
               onClick={handleRefresh}
               disabled={refreshing}
               className="flex items-center gap-2 px-4 py-2 bg-blue-600 text-white rounded-lg hover:bg-blue-700 transition-colors disabled:opacity-50 disabled:cursor-not-allowed"
-              title="Refresh dashboard data"
+              title={t("dashboard.refreshTitle")}
             >
               <RefreshCw className={`w-4 h-4 ${refreshing ? "animate-spin" : ""}`} />
-              {refreshing ? "Refreshing..." : "Refresh"}
+              {refreshing ? t("dashboard.refreshing") : t("dashboard.refresh")}
             </button>
           </div>
         </div>
@@ -157,7 +158,7 @@ export default function Home() {
         {/* Metrics Grid */}
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6 mb-8">
           <MetricCard
-            title="Total Users"
+            title={t("metrics.totalUsers")}
             value={metrics.totalUsers.toLocaleString()}
             change={metrics.growth.users}
             icon={Users}
@@ -165,7 +166,7 @@ export default function Home() {
             iconBgColor="bg-blue-100 dark:bg-blue-900/30"
           />
           <MetricCard
-            title="Total Revenue"
+            title={t("metrics.totalRevenue")}
             value={`$${metrics.totalRevenue.toLocaleString()}`}
             change={metrics.growth.revenue}
             icon={DollarSign}
@@ -173,7 +174,7 @@ export default function Home() {
             iconBgColor="bg-green-100 dark:bg-green-900/30"
           />
           <MetricCard
-            title="Conversion Rate"
+            title={t("metrics.conversionRate")}
             value={`${metrics.conversionRate}%`}
             change={metrics.growth.conversion}
             icon={TrendingUp}
@@ -181,7 +182,7 @@ export default function Home() {
             iconBgColor="bg-orange-100 dark:bg-orange-900/30"
           />
           <MetricCard
-            title="Avg. Order Value"
+            title={t("metrics.avgOrderValue")}
             value={`$${metrics.averageOrderValue}`}
             icon={ShoppingCart}
             iconColor="text-purple-600"
@@ -191,24 +192,33 @@ export default function Home() {
 
         {/* Charts Grid */}
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-6 mb-8">
-          <ChartCard title="Revenue Overview" description="Monthly revenue comparison">
+          <ChartCard
+            title={t("charts.revenueOverview.title")}
+            description={t("charts.revenueOverview.description")}
+          >
             <LineChart data={revenueData} height={300} />
           </ChartCard>
 
-          <ChartCard title="Traffic Sources" description="Weekly traffic by source">
+          <ChartCard
+            title={t("charts.trafficSources.title")}
+            description={t("charts.trafficSources.description")}
+          >
             <BarChart data={trafficData} height={300} />
           </ChartCard>
         </div>
 
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
           <ChartCard
-            title="Sales by Category"
-            description="Distribution of sales across categories"
+            title={t("charts.salesByCategory.title")}
+            description={t("charts.salesByCategory.description")}
           >
             <PieChart data={salesData} height={300} />
           </ChartCard>
 
-          <ChartCard title="User Growth" description="New user registrations over time">
+          <ChartCard
+            title={t("charts.userGrowth.title")}
+            description={t("charts.userGrowth.description")}
+          >
             <AreaChart data={userGrowthData} height={300} />
           </ChartCard>
         </div>
