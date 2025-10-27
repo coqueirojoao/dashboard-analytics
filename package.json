@@ -11,11 +11,12 @@
     "format": "prettier --write .",
     "format:check": "prettier --check .",
     "prepare": "husky",
-    "seed": "tsx lib/db/seed.ts"
+    "seed": "tsx --env-file=.env.local lib/db/seed.ts"
   },
   "dependencies": {
     "clsx": "^2.1.1",
     "date-fns": "^4.1.0",
+    "dotenv": "^17.2.3",
     "framer-motion": "^12.23.24",
     "lucide-react": "^0.548.0",
     "mongoose": "^8.19.2",

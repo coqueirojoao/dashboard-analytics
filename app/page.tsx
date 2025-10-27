@@ -3,6 +3,8 @@
 import { useEffect, useState } from "react";
 import { Users, TrendingUp, ShoppingCart, DollarSign } from "lucide-react";
 import { MetricCard, ChartCard } from "@/components/dashboard";
+import { MetricCardSkeleton } from "@/components/dashboard/MetricCardSkeleton";
+import { ChartCardSkeleton } from "@/components/dashboard/ChartCardSkeleton";
 import { LineChart, BarChart, AreaChart, PieChart } from "@/components/charts";
 import { ChartData, DashboardMetrics } from "@/types";
 import {
@@ -54,10 +56,36 @@ export default function Home() {
 
   if (loading) {
     return (
-      <div className="min-h-screen bg-gray-50 dark:bg-gray-900 flex items-center justify-center">
-        <div className="text-center">
-          <div className="animate-spin rounded-full h-12 w-12 border-b-2 border-blue-600 mx-auto mb-4"></div>
-          <p className="text-gray-600 dark:text-gray-400">Loading dashboard...</p>
+      <div className="min-h-screen bg-gray-50 dark:bg-gray-900">
+        <div className="container mx-auto px-4 py-8">
+          {/* Header */}
+          <div className="mb-8">
+            <h1 className="text-3xl font-bold text-gray-900 dark:text-white mb-2">
+              Analytics Dashboard
+            </h1>
+            <p className="text-gray-600 dark:text-gray-400">
+              Welcome back! Here&apos;s what&apos;s happening with your business today.
+            </p>
+          </div>
+
+          {/* Metrics Grid Skeleton */}
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6 mb-8">
+            <MetricCardSkeleton />
+            <MetricCardSkeleton />
+            <MetricCardSkeleton />
+            <MetricCardSkeleton />
+          </div>
+
+          {/* Charts Grid Skeleton */}
+          <div className="grid grid-cols-1 lg:grid-cols-2 gap-6 mb-8">
+            <ChartCardSkeleton />
+            <ChartCardSkeleton />
+          </div>
+
+          <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
+            <ChartCardSkeleton />
+            <ChartCardSkeleton />
+          </div>
         </div>
       </div>
     );
