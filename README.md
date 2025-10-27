@@ -267,7 +267,7 @@ MIT
 **João Pedro Cogueiro de Azevedo**
 
 - GitHub: [@coqueirojoao](https://github.com/coqueirojoao)
-- Portfolio: [João Pedro's Portfolio](https://your-portfolio-url.com)
+- Portfolio: [João Pedro's Portfolio]([https://your-portfolio-url.com](https://portfolio-coqueiro.vercel.app/pt))
 
 ---
 
