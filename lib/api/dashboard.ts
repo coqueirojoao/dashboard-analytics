@@ -1,6 +1,8 @@
 import { DashboardMetrics, ChartData } from "@/types";
 
-const API_BASE_URL = process.env.NEXT_PUBLIC_APP_URL || "http://localhost:3000";
+// Use relative URLs for API calls to work both in development and production
+const API_BASE_URL =
+  typeof window === "undefined" ? process.env.NEXT_PUBLIC_APP_URL || "http://localhost:3000" : "";
 
 interface RevenueItem {
   month: string;
