@@ -69,11 +69,7 @@ npm install
 
    d. Whitelist your IP or allow access from anywhere (0.0.0.0/0)
 
-   e. Get your connection string (it looks like):
-
-   ```
-   mongodb+srv://username:password@cluster0.xxxxx.mongodb.net/?retryWrites=true&w=majority
-   ```
+   e. Get your connection string from the MongoDB Atlas dashboard
 
 4. Set up environment variables
 
@@ -84,10 +80,10 @@ cp .env.example .env.local
 Edit `.env.local` and add your MongoDB connection string:
 
 ```env
-MONGODB_URI=mongodb+srv://username:password@cluster0.xxxxx.mongodb.net/dashboard-analytics?retryWrites=true&w=majority
+MONGODB_URI=your_mongodb_connection_string_here
 ```
 
-**Important**: Add `/dashboard-analytics` before the `?` to specify the database name.
+**Important**: Make sure to add `/dashboard-analytics` before the `?` in your connection string to specify the database name.
 
 5. Seed the database with sample data
 
