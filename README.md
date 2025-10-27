@@ -8,6 +8,7 @@ A modern, full-stack analytics dashboard built with Next.js 16, TypeScript, and 
 
 ## Features
 
+- **Internationalization (i18n)**: Full support for Portuguese (PT-BR) and English (EN-US)
 - **Interactive Charts**: Line, bar, area, and pie charts with Recharts
 - **Real-time Metrics**: Key business metrics with growth indicators
 - **Responsive Design**: Mobile-first approach with Tailwind CSS
@@ -25,6 +26,7 @@ A modern, full-stack analytics dashboard built with Next.js 16, TypeScript, and 
 - **Next.js 16** - React framework with App Router and Turbopack
 - **TypeScript** - Type-safe development
 - **Tailwind CSS** - Utility-first styling
+- **next-intl** - Internationalization (i18n) with locale routing
 - **Recharts** - Interactive data visualization library
 - **Framer Motion** - Animation library
 - **next-themes** - Dark mode support
@@ -124,6 +126,11 @@ Open [http://localhost:3000](http://localhost:3000) to view the dashboard.
 ```
 dashboard-analytics/
 ├── app/                           # Next.js App Router
+│   ├── [locale]/                 # Locale-based routing (pt/en)
+│   │   ├── about/                # About page
+│   │   │   └── page.tsx          # About project page
+│   │   ├── layout.tsx            # Locale layout with i18n provider
+│   │   └── page.tsx              # Main dashboard page
 │   ├── api/                      # API routes
 │   │   ├── analytics/            # Analytics metrics endpoint
 │   │   ├── revenue/              # Revenue data endpoint
@@ -131,8 +138,7 @@ dashboard-analytics/
 │   │   ├── sales/                # Sales distribution endpoint
 │   │   └── user-growth/          # User growth endpoint
 │   ├── globals.css               # Global styles
-│   ├── layout.tsx                # Root layout with providers
-│   └── page.tsx                  # Main dashboard page
+│   └── layout.tsx                # Root layout with providers
 ├── components/
 │   ├── charts/                   # Chart components
 │   │   ├── AreaChart.tsx         # Area chart for trends
@@ -145,7 +151,8 @@ dashboard-analytics/
 │   │   ├── MetricCard.tsx        # Metric display with growth
 │   │   └── MetricCardSkeleton.tsx # Loading state for metrics
 │   ├── layout/                   # Layout components
-│   │   └── Footer.tsx            # Footer with project info
+│   │   ├── Footer.tsx            # Footer with project info
+│   │   └── LanguageToggle.tsx    # Language switcher component
 │   ├── providers/                # Context providers
 │   │   └── theme-provider.tsx   # Theme/dark mode provider
 │   └── ui/                       # Reusable UI components
@@ -162,8 +169,13 @@ dashboard-analytics/
 │       │   └── UserGrowth.ts
 │       ├── mongodb.ts            # MongoDB connection with caching
 │       └── seed.ts               # Database seeding script
+├── messages/                     # i18n translation files
+│   ├── en.json                   # English translations
+│   └── pt.json                   # Portuguese translations
 ├── types/                        # TypeScript type definitions
 │   └── dashboard.ts              # Dashboard data types
+├── i18n.ts                       # i18n configuration
+├── middleware.ts                 # Locale detection middleware
 └── public/                       # Static assets
 ```
 
@@ -262,12 +274,18 @@ This project follows [Conventional Commits](https://www.conventionalcommits.org/
 
 MIT
 
+## Links
+
+- **Live Demo**: [https://dashboard-analytics-flax.vercel.app](https://dashboard-analytics-flax.vercel.app)
+- **Portfolio**: [https://portfolio-coqueiro.vercel.app](https://portfolio-coqueiro.vercel.app)
+
 ## Author
 
 **João Pedro Cogueiro de Azevedo**
 
 - GitHub: [@coqueirojoao](https://github.com/coqueirojoao)
-- Portfolio: [João Pedro's Portfolio]([https://your-portfolio-url.com](https://portfolio-coqueiro.vercel.app/pt))
+- LinkedIn: [João Pedro Coqueiro](https://linkedin.com/in/joao-pedro-coqueiro)
+- Portfolio: [portfolio-coqueiro.vercel.app](https://portfolio-coqueiro.vercel.app)
 
 ---
 
