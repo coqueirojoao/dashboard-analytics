@@ -1,7 +1,7 @@
 "use client";
 
-import { useEffect, useState } from "react";
-import { Users, TrendingUp, ShoppingCart, DollarSign } from "lucide-react";
+import { useEffect, useState, useCallback } from "react";
+import { Users, TrendingUp, ShoppingCart, DollarSign, RefreshCw } from "lucide-react";
 import { MetricCard, ChartCard } from "@/components/dashboard";
 import { MetricCardSkeleton } from "@/components/dashboard/MetricCardSkeleton";
 import { ChartCardSkeleton } from "@/components/dashboard/ChartCardSkeleton";
@@ -22,37 +22,44 @@ export default function Home() {
   const [salesData, setSalesData] = useState<ChartData | null>(null);
   const [userGrowthData, setUserGrowthData] = useState<ChartData | null>(null);
   const [loading, setLoading] = useState(true);
+  const [refreshing, setRefreshing] = useState(false);
   const [error, setError] = useState<string | null>(null);
 
-  useEffect(() => {
-    async function loadData() {
-      try {
-        setLoading(true);
-        setError(null);
+  const loadData = useCallback(async () => {
+    try {
+      setLoading(true);
+      setError(null);
 
-        const [metricsData, revenue, traffic, sales, userGrowth] = await Promise.all([
-          fetchAnalytics(),
-          fetchRevenueData(),
-          fetchTrafficData(),
-          fetchSalesData(),
-          fetchUserGrowthData(),
-        ]);
+      const [metricsData, revenue, traffic, sales, userGrowth] = await Promise.all([
+        fetchAnalytics(),
+        fetchRevenueData(),
+        fetchTrafficData(),
+        fetchSalesData(),
+        fetchUserGrowthData(),
+      ]);
 
-        setMetrics(metricsData);
-        setRevenueData(revenue);
-        setTrafficData(traffic);
-        setSalesData(sales);
-        setUserGrowthData(userGrowth);
-      } catch (err) {
-        console.error("Error loading dashboard data:", err);
-        setError("Failed to load dashboard data. Please try again later.");
-      } finally {
-        setLoading(false);
-      }
+      setMetrics(metricsData);
+      setRevenueData(revenue);
+      setTrafficData(traffic);
+      setSalesData(sales);
+      setUserGrowthData(userGrowth);
+    } catch (err) {
+      console.error("Error loading dashboard data:", err);
+      setError("Failed to load dashboard data. Please try again later.");
+    } finally {
+      setLoading(false);
+      setRefreshing(false);
     }
-
-    loadData();
   }, []);
+
+  const handleRefresh = async () => {
+    setRefreshing(true);
+    await loadData();
+  };
+
+  useEffect(() => {
+    loadData();
+  }, [loadData]);
 
   if (loading) {
     return (
@@ -115,13 +122,24 @@ export default function Home() {
     <div className="min-h-screen bg-gray-50 dark:bg-gray-900">
       <div className="container mx-auto px-4 py-8">
         {/* Header */}
-        <div className="mb-8">
-          <h1 className="text-3xl font-bold text-gray-900 dark:text-white mb-2">
-            Analytics Dashboard
-          </h1>
-          <p className="text-gray-600 dark:text-gray-400">
-            Welcome back! Here&apos;s what&apos;s happening with your business today.
-          </p>
+        <div className="mb-8 flex items-center justify-between">
+          <div>
+            <h1 className="text-3xl font-bold text-gray-900 dark:text-white mb-2">
+              Analytics Dashboard
+            </h1>
+            <p className="text-gray-600 dark:text-gray-400">
+              Welcome back! Here&apos;s what&apos;s happening with your business today.
+            </p>
+          </div>
+          <button
+            onClick={handleRefresh}
+            disabled={refreshing}
+            className="flex items-center gap-2 px-4 py-2 bg-blue-600 text-white rounded-lg hover:bg-blue-700 transition-colors disabled:opacity-50 disabled:cursor-not-allowed"
+            title="Refresh dashboard data"
+          >
+            <RefreshCw className={`w-4 h-4 ${refreshing ? "animate-spin" : ""}`} />
+            {refreshing ? "Refreshing..." : "Refresh"}
+          </button>
         </div>
 
         {/* Metrics Grid */}
