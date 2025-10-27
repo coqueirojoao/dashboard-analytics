@@ -42,8 +42,7 @@ A modern, full-stack analytics dashboard built with Next.js 16, TypeScript, and 
 
 - Node.js 20+
 - npm or yarn
-- MongoDB instance
-- Redis instance (optional)
+- MongoDB Atlas account (free tier)
 
 ### Installation
 
@@ -60,19 +59,67 @@ cd dashboard-analytics
 npm install
 ```
 
-3. Set up environment variables
+3. Set up MongoDB Atlas
+
+   a. Go to [MongoDB Atlas](https://www.mongodb.com/cloud/atlas/register) and create a free account
+
+   b. Create a new cluster (M0 Free tier is perfect)
+
+   c. Create a database user with read/write permissions
+
+   d. Whitelist your IP or allow access from anywhere (0.0.0.0/0)
+
+   e. Get your connection string (it looks like):
+
+   ```
+   mongodb+srv://username:password@cluster0.xxxxx.mongodb.net/?retryWrites=true&w=majority
+   ```
+
+4. Set up environment variables
 
 ```bash
 cp .env.example .env.local
 ```
 
-4. Run the development server
+Edit `.env.local` and add your MongoDB connection string:
+
+```env
+MONGODB_URI=mongodb+srv://username:password@cluster0.xxxxx.mongodb.net/dashboard-analytics?retryWrites=true&w=majority
+```
+
+**Important**: Add `/dashboard-analytics` before the `?` to specify the database name.
+
+5. Seed the database with sample data
+
+```bash
+npm run seed
+```
+
+This will create sample data for analytics, revenue, traffic, sales, and user growth.
+
+6. Run the development server
 
 ```bash
 npm run dev
 ```
 
 Open [http://localhost:3000](http://localhost:3000) in your browser.
+
+## Deployment
+
+### Deploy to Vercel
+
+1. Push your code to GitHub
+
+2. Go to [Vercel](https://vercel.com) and import your repository
+
+3. Add environment variables:
+   - `MONGODB_URI` - Your MongoDB Atlas connection string
+   - `NEXT_PUBLIC_APP_URL` - Your Vercel deployment URL
+
+4. Deploy!
+
+The application will automatically work with MongoDB Atlas in production.
 
 ## Project Structure
 
@@ -96,6 +143,7 @@ dashboard-analytics/
 - `npm run dev` - Start development server
 - `npm run build` - Build for production
 - `npm run start` - Start production server
+- `npm run seed` - Seed database with sample data
 - `npm run lint` - Run ESLint
 - `npm run lint:fix` - Fix ESLint errors
 - `npm run format` - Format code with Prettier
